@@ -1,16 +1,36 @@
-# vibemart
+# VibeMart 
 
-A new Flutter project.
+VibeMart is an e-commerce mobile application designed for both users and administrators. 
+It allows users to browse products, make purchases, and manage their profiles, 
+While the admin can manage inventory, orders, and users via an admin panel.
 
-## Getting Started
+# Features
 
-This project is a starting point for a Flutter application.
+- User Features:
+    Browse products by category
+    Add products to cart
+    Make purchases with payment integration
+    Manage user profile and order history
 
-A few resources to get you started if this is your first Flutter project:
+- Admin Features:
+    Manage products (add, edit, delete)
+    View and manage orders
+    Manage users
+    Admin authentication and dashboard
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+# Technologies Used
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+- Flutter: 
+    The mobile app framework used to build the app for both Android and iOS.
+- Firebase: 
+    Cloud backend service for authentication, Firestore database, and storage.
+- Riverpod: 
+    A modern state management solution for handling the state of the app.
+- FlutterFire: 
+    Flutter plugins for Firebase integration.
+- Firebase FireStore: 
+    Database for storing products, orders, and user data.
+- Firebase Authentication: 
+    Authentication for both users and admins.
+- Flutter UI: 
+    Custom and responsive UI for both user and admin interfaces.
