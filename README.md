@@ -33,4 +33,8 @@ While the admin can manage inventory, orders, and users via an admin panel.
 - Firebase Authentication: 
     Authentication for both users and admins.
 - Flutter UI: 
+<<<<<<< HEAD
     Custom and responsive UI for both user and admin interfaces.
+=======
+    Custom and responsive UI for both user and admin interfaces.
+>>>>>>> dccc781f109b251bf7fa96e3c170f0f40a038bb8
