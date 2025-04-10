@@ -46,6 +46,7 @@ dependencies:
   google_fonts: ^6.2.1
   mask_text_input_formatter: ^2.9.0
   iconsax: ^0.0.8
+  flutter_screenutil: ^5.9.3
 
 
 
@@ -58,9 +59,9 @@ dev_dependencies:
 flutter_icons:
   android: true
   ios: true
-  image_path: "assets/images/app_logo.png"
+  image_path: "assets/images/logo.png"
   adaptive_icon_background: "#ffffff"
-  adaptive_icon_foreground: "assets/images/app_logo.png"
+  adaptive_icon_foreground: "assets/images/logo.png"
   min_sdk_android: 21
   remove_alpha_ios: true
 
