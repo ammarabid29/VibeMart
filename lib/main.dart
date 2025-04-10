@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(const VibeMart());
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+class VibeMart extends StatelessWidget {
+  const VibeMart({super.key});
 
   // This widget is the root of your application.
   @override
