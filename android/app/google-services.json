@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "630728843249",
+    "project_id": "vibemart-44247",
+    "storage_bucket": "vibemart-44247.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:630728843249:android:b11390bbacd8a87dc9ae50",
+        "android_client_info": {
+          "package_name": "com.personal.vibemart"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAccemI1Tm5Be10FyXrffm6sYBUSnsSwf0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

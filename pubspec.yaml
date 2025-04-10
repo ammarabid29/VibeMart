@@ -35,6 +35,19 @@ dependencies:
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.8
   rename_app: ^1.6.2
+  firebase_core: ^3.13.0
+  firebase_auth: ^5.5.2
+  cloud_firestore: ^5.6.6
+  firebase_storage: ^12.4.5
+  image_picker: ^1.1.2
+  flutter_riverpod: ^2.6.1
+  dotted_line: ^3.2.3
+  cached_network_image: ^3.4.1
+  google_fonts: ^6.2.1
+  mask_text_input_formatter: ^2.9.0
+  iconsax: ^0.0.8
+
+
 
 
 dev_dependencies:
@@ -46,6 +59,10 @@ flutter_icons:
   android: true
   ios: true
   image_path: "assets/images/app_logo.png"
+  adaptive_icon_background: "#ffffff"
+  adaptive_icon_foreground: "assets/images/app_logo.png"
+  min_sdk_android: 21
+  remove_alpha_ios: true
 
   # The "flutter_lints" package below contains a set of recommended lints to
   # encourage good coding practices. The lint set provided by the package is
@@ -66,8 +83,8 @@ flutter:
   uses-material-design: true
 
   # To add assets to your application, add an assets section, like this:
-  # assets:
-  #   - images/a_dot_burr.jpeg
+  assets:
+    - assets/images/
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see
