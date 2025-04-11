@@ -13,6 +13,8 @@ class LoginView extends StatefulWidget {
 }
 
 class _LoginViewState extends State<LoginView> {
+  final TextEditingController emailController = TextEditingController();
+  final TextEditingController passwordController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -27,9 +29,12 @@ class _LoginViewState extends State<LoginView> {
                   child: Image.asset("assets/images/app_logo.png"),
                 ),
                 SizedBox(height: 20.h),
-                CustomTextField(text: "Email"),
+                CustomTextField(text: "Email", controller: emailController),
                 SizedBox(height: 15.h),
-                CustomTextField(text: "Password"),
+                CustomTextField(
+                  text: "Password",
+                  controller: passwordController,
+                ),
                 SizedBox(height: 20.h),
                 CustomButton(text: "Login", onPressed: () {}),
                 SizedBox(height: 15.h),

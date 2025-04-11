@@ -4,11 +4,17 @@ import 'package:vibemart/core/colors/colors.dart';
 
 class CustomTextField extends StatelessWidget {
   final String text;
-  const CustomTextField({super.key, required this.text});
+  final TextEditingController controller;
+  const CustomTextField({
+    super.key,
+    required this.text,
+    required this.controller,
+  });
 
   @override
   Widget build(BuildContext context) {
     return TextField(
+      controller: controller,
       decoration: InputDecoration(
         labelText: text,
         labelStyle: TextStyle(color: kPrimaryColor),
