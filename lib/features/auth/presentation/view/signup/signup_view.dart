@@ -20,8 +20,9 @@ class _SignupViewState extends State<SignupView> {
   final TextEditingController passwordController = TextEditingController();
   final TextEditingController nameController = TextEditingController();
   String selectedRole = "User";
-  bool isLoading = false;
 
+  bool isLoading = false;
+  bool isPasswordHidden = true;
   final SignupViewModel _signupViewModel = SignupViewModel();
 
   @override
@@ -50,7 +51,19 @@ class _SignupViewState extends State<SignupView> {
                 CustomTextField(
                   text: "Password",
                   controller: passwordController,
-                  obscure: true,
+                  obscure: isPasswordHidden,
+                  suffixIcon: IconButton(
+                    onPressed: () {
+                      setState(() {
+                        isPasswordHidden = !isPasswordHidden;
+                      });
+                    },
+                    icon: Icon(
+                      isPasswordHidden
+                          ? Icons.visibility_off
+                          : Icons.visibility,
+                    ),
+                  ),
                 ),
                 SizedBox(height: 15.h),
                 DropdownButtonFormField(

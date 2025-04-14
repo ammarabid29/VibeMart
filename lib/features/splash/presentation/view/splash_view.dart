@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:vibemart/admin_view.dart';
 import 'package:vibemart/features/auth/presentation/view/login/login_view.dart';
+import 'package:vibemart/features/splash/presentation/view_model/splash_view_model.dart';
+import 'package:vibemart/user_view.dart';
 
 class SplashView extends StatefulWidget {
   const SplashView({super.key});
@@ -9,22 +12,23 @@ class SplashView extends StatefulWidget {
 }
 
 class _SplashViewState extends State<SplashView> {
+  final SplashViewModel _splashViewModel = SplashViewModel();
+
+  @override
+  void initState() {
+    super.initState();
+    _splashViewModel.navigationBasedOnRole(context);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Padding(
         padding: const EdgeInsets.all(8.0),
         child: Center(
-          child: InkWell(
-            onTap: () {
-              Navigator.of(
-                context,
-              ).push(MaterialPageRoute(builder: (context) => LoginView()));
-            },
-            child: Hero(
-              tag: "logo",
-              child: Image.asset("assets/images/app_logo.png"),
-            ),
+          child: Hero(
+            tag: "logo",
+            child: Image.asset("assets/images/app_logo.png"),
           ),
         ),
       ),

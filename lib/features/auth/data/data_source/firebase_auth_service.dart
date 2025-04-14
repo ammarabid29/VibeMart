@@ -24,7 +24,7 @@ class FirebaseAuthService {
         'email': email.trim(),
         'role': role,
       });
-    } on FirebaseAuthException catch (e) {
+    } on FirebaseAuthException catch (_) {
       rethrow;
     } catch (e) {
       rethrow;
@@ -49,7 +49,7 @@ class FirebaseAuthService {
               .doc(userCredentials.user!.uid)
               .get();
       return userDoc['role'] as String;
-    } on FirebaseAuthException catch (e) {
+    } on FirebaseAuthException catch (_) {
       rethrow;
     } catch (e) {
       rethrow;

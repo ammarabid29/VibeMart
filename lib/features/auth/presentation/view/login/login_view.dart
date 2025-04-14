@@ -19,6 +19,7 @@ class _LoginViewState extends State<LoginView> {
   final TextEditingController passwordController = TextEditingController();
 
   bool isLoading = false;
+  bool isPasswordHidden = true;
 
   final LoginViewModel _loginViewModel = LoginViewModel();
 
@@ -48,7 +49,19 @@ class _LoginViewState extends State<LoginView> {
                 CustomTextField(
                   text: "Password",
                   controller: passwordController,
-                  obscure: true,
+                  obscure: isPasswordHidden,
+                  suffixIcon: IconButton(
+                    onPressed: () {
+                      setState(() {
+                        isPasswordHidden = !isPasswordHidden;
+                      });
+                    },
+                    icon: Icon(
+                      isPasswordHidden
+                          ? Icons.visibility_off
+                          : Icons.visibility,
+                    ),
+                  ),
                 ),
                 SizedBox(height: 20.h),
                 CustomButton(
