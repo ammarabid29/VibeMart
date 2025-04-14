@@ -1,11 +1,9 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:vibemart/admin_view.dart';
+import 'package:vibemart/features/admin_app/admin_home/presentation/view/admin_home_view.dart';
 import 'package:vibemart/features/auth/presentation/view/login/login_view.dart';
 import 'package:vibemart/features/splash/data/repository/splash_repo_impl.dart';
 import 'package:vibemart/features/splash/domain/repository/splash_repo.dart';
-import 'package:vibemart/user_view.dart';
+import 'package:vibemart/features/user_app/user_home/presentation/view/user_home_view.dart';
 
 class SplashViewModel {
   final SplashRepo _splashRepo = SplashRepoImpl();
@@ -18,12 +16,12 @@ class SplashViewModel {
       if (role == "Admin") {
         Navigator.pushReplacement(
           context,
-          MaterialPageRoute(builder: (_) => const AdminView()),
+          MaterialPageRoute(builder: (_) => const AdminHomeView()),
         );
       } else if (role == "User") {
         Navigator.pushReplacement(
           context,
-          MaterialPageRoute(builder: (_) => const UserView()),
+          MaterialPageRoute(builder: (_) => const UserHomeView()),
         );
       } else {
         Navigator.pushReplacement(

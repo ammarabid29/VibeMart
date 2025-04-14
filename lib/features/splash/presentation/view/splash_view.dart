@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:vibemart/admin_view.dart';
-import 'package:vibemart/features/auth/presentation/view/login/login_view.dart';
 import 'package:vibemart/features/splash/presentation/view_model/splash_view_model.dart';
-import 'package:vibemart/user_view.dart';
 
 class SplashView extends StatefulWidget {
   const SplashView({super.key});

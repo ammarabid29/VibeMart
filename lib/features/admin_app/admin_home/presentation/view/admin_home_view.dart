@@ -1,10 +1,9 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:vibemart/features/auth/presentation/view/login/login_view.dart';
 
-import 'features/auth/presentation/view/login/login_view.dart';
-
-class AdminView extends StatelessWidget {
-  const AdminView({super.key});
+class AdminHomeView extends StatelessWidget {
+  const AdminHomeView({super.key});
 
   @override
   Widget build(BuildContext context) {

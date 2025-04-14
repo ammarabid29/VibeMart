@@ -9,7 +9,7 @@ class FirebaseSplashService {
     final user = _firebaseAuth.currentUser;
     if (user != null) {
       DocumentSnapshot userDoc =
-          await _fireStore.collection("users").doc(user!.uid).get();
+          await _fireStore.collection("users").doc(user.uid).get();
       return userDoc['role'] as String;
     }
     return null;
