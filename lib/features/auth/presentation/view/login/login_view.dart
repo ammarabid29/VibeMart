@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:vibemart/core/widgets/toasts.dart';
 import 'package:vibemart/features/auth/presentation/view/signup/signup_view.dart';
 import 'package:vibemart/features/auth/presentation/view/widgets/auth_navigation_text.dart';
 import 'package:vibemart/features/auth/presentation/view/widgets/custom_button.dart';
 import 'package:vibemart/features/auth/presentation/view/widgets/custom_text_field.dart';
+import 'package:vibemart/features/auth/presentation/view_model/login/login_view_model.dart';
 
 class LoginView extends StatefulWidget {
   const LoginView({super.key});
@@ -15,6 +17,18 @@ class LoginView extends StatefulWidget {
 class _LoginViewState extends State<LoginView> {
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
+
+  bool isLoading = false;
+
+  final LoginViewModel _loginViewModel = LoginViewModel();
+
+  @override
+  void dispose() {
+    emailController.dispose();
+    passwordController.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -34,9 +48,31 @@ class _LoginViewState extends State<LoginView> {
                 CustomTextField(
                   text: "Password",
                   controller: passwordController,
+                  obscure: true,
                 ),
                 SizedBox(height: 20.h),
-                CustomButton(text: "Login", onPressed: () {}),
+                CustomButton(
+                  isLoading: isLoading,
+                  text: "Login",
+                  onPressed: () async {
+                    if (emailController.text.isEmpty ||
+                        passwordController.text.isEmpty) {
+                      showErrorToast("Enter the values");
+                    } else {
+                      setState(() {
+                        isLoading = true;
+                      });
+                      await _loginViewModel.login(
+                        context: context,
+                        email: emailController.text,
+                        password: passwordController.text,
+                      );
+                      setState(() {
+                        isLoading = false;
+                      });
+                    }
+                  },
+                ),
                 SizedBox(height: 15.h),
                 AuthNavigationText(
                   promptText: "Don't have an account? ",

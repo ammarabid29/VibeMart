@@ -47,6 +47,7 @@ dependencies:
   mask_text_input_formatter: ^2.9.0
   iconsax: ^0.0.8
   flutter_screenutil: ^5.9.3
+  fluttertoast: ^8.2.2
 
 
 

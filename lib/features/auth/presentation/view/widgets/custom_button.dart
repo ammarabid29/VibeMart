@@ -5,8 +5,14 @@ import 'package:vibemart/core/colors/colors.dart';
 class CustomButton extends StatelessWidget {
   final String text;
   final VoidCallback? onPressed;
+  final bool isLoading;
 
-  const CustomButton({super.key, required this.text, this.onPressed});
+  const CustomButton({
+    super.key,
+    required this.text,
+    this.onPressed,
+    required this.isLoading,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -25,7 +31,10 @@ class CustomButton extends StatelessWidget {
           elevation: 3,
           shadowColor: kPrimaryColor.withAlpha(30),
         ),
-        child: Text(text),
+        child:
+            isLoading
+                ? CircularProgressIndicator(color: kBackgroundColor)
+                : Text(text),
       ),
     );
   }

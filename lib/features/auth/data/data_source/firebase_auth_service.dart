@@ -5,7 +5,7 @@ class FirebaseAuthService {
   final FirebaseAuth _auth = FirebaseAuth.instance;
   final FirebaseFirestore _fireStore = FirebaseFirestore.instance;
 
-  Future<String?> signupUser({
+  Future<void> signupUser({
     required String name,
     required String email,
     required String password,
@@ -24,13 +24,14 @@ class FirebaseAuthService {
         'email': email.trim(),
         'role': role,
       });
-      return null;
+    } on FirebaseAuthException catch (e) {
+      rethrow;
     } catch (e) {
       rethrow;
     }
   }
 
-  Future<String?> loginUser({
+  Future<String> loginUser({
     required String email,
     required String password,
   }) async {
@@ -47,7 +48,9 @@ class FirebaseAuthService {
               .collection("users")
               .doc(userCredentials.user!.uid)
               .get();
-      return userDoc['role'];
+      return userDoc['role'] as String;
+    } on FirebaseAuthException catch (e) {
+      rethrow;
     } catch (e) {
       rethrow;
     }
