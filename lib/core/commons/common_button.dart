@@ -2,16 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:vibemart/core/colors/colors.dart';
 
-class CustomButton extends StatelessWidget {
+class CommonButton extends StatelessWidget {
   final String text;
   final VoidCallback? onPressed;
-  final bool isLoading;
+  final bool? isLoading;
 
-  const CustomButton({
+  const CommonButton({
     super.key,
     required this.text,
     this.onPressed,
-    required this.isLoading,
+    this.isLoading,
   });
 
   @override
@@ -32,7 +32,7 @@ class CustomButton extends StatelessWidget {
           shadowColor: kPrimaryColor.withAlpha(30),
         ),
         child:
-            isLoading
+            isLoading == true
                 ? CircularProgressIndicator(color: kBackgroundColor)
                 : Text(text),
       ),

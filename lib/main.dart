@@ -1,5 +1,6 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:vibemart/features/splash/presentation/view/splash_view.dart';
 import 'package:vibemart/firebase_options.dart';
@@ -15,15 +16,17 @@ class VibeMart extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ScreenUtilInit(
-      builder: (context, child) {
-        return MaterialApp(
-          debugShowCheckedModeBanner: false,
-          title: 'A Shopping App',
-          home: child,
-        );
-      },
-      child: const SplashView(),
+    return ProviderScope(
+      child: ScreenUtilInit(
+        builder: (context, child) {
+          return MaterialApp(
+            debugShowCheckedModeBanner: false,
+            title: 'A Shopping App',
+            home: child,
+          );
+        },
+        child: const SplashView(),
+      ),
     );
   }
 }

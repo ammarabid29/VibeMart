@@ -2,28 +2,25 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:vibemart/core/colors/colors.dart';
 
-class CustomTextField extends StatelessWidget {
-  final String text;
-  final bool? obscure;
-  final TextEditingController controller;
-  final IconButton? suffixIcon;
-  const CustomTextField({
+class CommonDropdown extends StatelessWidget {
+  final String label;
+  final List<DropdownMenuItem<String>>? items;
+  final void Function(String?)? onChanged;
+  final String? value;
+  const CommonDropdown({
     super.key,
-    required this.text,
-    required this.controller,
-    this.obscure,
-    this.suffixIcon,
+    required this.label,
+    this.items,
+    this.onChanged,
+    this.value,
   });
 
   @override
   Widget build(BuildContext context) {
-    return TextField(
-      obscureText: obscure ?? false,
-      controller: controller,
-
+    return DropdownButtonFormField<String>(
+      value: value,
       decoration: InputDecoration(
-        suffixIcon: suffixIcon,
-        labelText: text,
+        labelText: label,
         labelStyle: TextStyle(color: kPrimaryColor),
         focusedBorder: OutlineInputBorder(
           borderSide: BorderSide(color: kPrimaryColor, width: 2.0.w),
@@ -34,8 +31,8 @@ class CustomTextField extends StatelessWidget {
         filled: true,
         fillColor: kCardColor, // white background
       ),
-      cursorColor: kPrimaryColor,
-      style: TextStyle(color: kTextPrimary),
+      items: items,
+      onChanged: onChanged,
     );
   }
 }

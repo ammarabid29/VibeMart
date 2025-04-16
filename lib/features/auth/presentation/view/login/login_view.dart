@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:vibemart/core/widgets/toasts.dart';
+import 'package:vibemart/core/commons/custom_toasts.dart';
 import 'package:vibemart/features/auth/presentation/view/signup/signup_view.dart';
 import 'package:vibemart/features/auth/presentation/view/widgets/auth_navigation_text.dart';
-import 'package:vibemart/features/auth/presentation/view/widgets/custom_button.dart';
-import 'package:vibemart/features/auth/presentation/view/widgets/custom_text_field.dart';
+import 'package:vibemart/core/commons/common_button.dart';
+import 'package:vibemart/core/commons/common_text_field.dart';
 import 'package:vibemart/features/auth/presentation/view_model/login/login_view_model.dart';
 
 class LoginView extends StatefulWidget {
@@ -15,8 +15,8 @@ class LoginView extends StatefulWidget {
 }
 
 class _LoginViewState extends State<LoginView> {
-  final TextEditingController emailController = TextEditingController();
-  final TextEditingController passwordController = TextEditingController();
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
 
   bool isLoading = false;
   bool isPasswordHidden = true;
@@ -25,8 +25,8 @@ class _LoginViewState extends State<LoginView> {
 
   @override
   void dispose() {
-    emailController.dispose();
-    passwordController.dispose();
+    _emailController.dispose();
+    _passwordController.dispose();
     super.dispose();
   }
 
@@ -44,11 +44,11 @@ class _LoginViewState extends State<LoginView> {
                   child: Image.asset("assets/images/app_logo.png"),
                 ),
                 SizedBox(height: 20.h),
-                CustomTextField(text: "Email", controller: emailController),
+                CommonTextField(text: "Email", controller: _emailController),
                 SizedBox(height: 15.h),
-                CustomTextField(
+                CommonTextField(
                   text: "Password",
-                  controller: passwordController,
+                  controller: _passwordController,
                   obscure: isPasswordHidden,
                   suffixIcon: IconButton(
                     onPressed: () {
@@ -64,12 +64,12 @@ class _LoginViewState extends State<LoginView> {
                   ),
                 ),
                 SizedBox(height: 20.h),
-                CustomButton(
+                CommonButton(
                   isLoading: isLoading,
                   text: "Login",
                   onPressed: () async {
-                    if (emailController.text.isEmpty ||
-                        passwordController.text.isEmpty) {
+                    if (_emailController.text.isEmpty ||
+                        _passwordController.text.isEmpty) {
                       showErrorToast("Enter the values");
                     } else {
                       setState(() {
@@ -77,8 +77,8 @@ class _LoginViewState extends State<LoginView> {
                       });
                       await _loginViewModel.login(
                         context: context,
-                        email: emailController.text,
-                        password: passwordController.text,
+                        email: _emailController.text,
+                        password: _passwordController.text,
                       );
                       setState(() {
                         isLoading = false;

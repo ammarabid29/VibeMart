@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:vibemart/core/colors/colors.dart';
-import 'package:vibemart/core/widgets/toasts.dart';
+import 'package:vibemart/core/commons/common_dropdown.dart';
+import 'package:vibemart/core/commons/custom_toasts.dart';
 import 'package:vibemart/features/auth/presentation/view/login/login_view.dart';
 import 'package:vibemart/features/auth/presentation/view/widgets/auth_navigation_text.dart';
-import 'package:vibemart/features/auth/presentation/view/widgets/custom_button.dart';
-import 'package:vibemart/features/auth/presentation/view/widgets/custom_text_field.dart';
+import 'package:vibemart/core/commons/common_button.dart';
+import 'package:vibemart/core/commons/common_text_field.dart';
 import 'package:vibemart/features/auth/presentation/view_model/signup/signup_view_model.dart';
 
 class SignupView extends StatefulWidget {
@@ -16,9 +16,9 @@ class SignupView extends StatefulWidget {
 }
 
 class _SignupViewState extends State<SignupView> {
-  final TextEditingController emailController = TextEditingController();
-  final TextEditingController passwordController = TextEditingController();
-  final TextEditingController nameController = TextEditingController();
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
+  final TextEditingController _nameController = TextEditingController();
   String selectedRole = "User";
 
   bool isLoading = false;
@@ -27,9 +27,9 @@ class _SignupViewState extends State<SignupView> {
 
   @override
   void dispose() {
-    nameController.dispose();
-    emailController.dispose();
-    passwordController.dispose();
+    _nameController.dispose();
+    _emailController.dispose();
+    _passwordController.dispose();
     super.dispose();
   }
 
@@ -44,13 +44,13 @@ class _SignupViewState extends State<SignupView> {
               children: [
                 Image.asset("assets/images/app_logo.png", height: 200.h),
                 SizedBox(height: 20.h),
-                CustomTextField(text: "Name", controller: nameController),
+                CommonTextField(text: "Name", controller: _nameController),
                 SizedBox(height: 15.h),
-                CustomTextField(text: "Email", controller: emailController),
+                CommonTextField(text: "Email", controller: _emailController),
                 SizedBox(height: 15.h),
-                CustomTextField(
+                CommonTextField(
                   text: "Password",
-                  controller: passwordController,
+                  controller: _passwordController,
                   obscure: isPasswordHidden,
                   suffixIcon: IconButton(
                     onPressed: () {
@@ -66,22 +66,8 @@ class _SignupViewState extends State<SignupView> {
                   ),
                 ),
                 SizedBox(height: 15.h),
-                DropdownButtonFormField(
-                  decoration: InputDecoration(
-                    labelText: "Role",
-                    labelStyle: TextStyle(color: kPrimaryColor),
-                    focusedBorder: OutlineInputBorder(
-                      borderSide: BorderSide(
-                        color: kPrimaryColor,
-                        width: 2.0.w,
-                      ),
-                    ),
-                    enabledBorder: OutlineInputBorder(
-                      borderSide: BorderSide(color: kGrayLight, width: 1.5.w),
-                    ),
-                    filled: true,
-                    fillColor: kCardColor, // white background
-                  ),
+                CommonDropdown(
+                  label: "Role",
                   items:
                       ["Admin", "User"].map((role) {
                         return DropdownMenuItem(value: role, child: Text(role));
@@ -95,13 +81,13 @@ class _SignupViewState extends State<SignupView> {
                   },
                 ),
                 SizedBox(height: 20.h),
-                CustomButton(
+                CommonButton(
                   isLoading: isLoading,
                   text: "Signup",
                   onPressed: () async {
-                    if (emailController.text.isEmpty ||
-                        passwordController.text.isEmpty ||
-                        nameController.text.isEmpty) {
+                    if (_emailController.text.isEmpty ||
+                        _passwordController.text.isEmpty ||
+                        _nameController.text.isEmpty) {
                       showErrorToast("Enter the values");
                     } else {
                       setState(() {
@@ -109,9 +95,9 @@ class _SignupViewState extends State<SignupView> {
                       });
                       await _signupViewModel.signUp(
                         context: context,
-                        name: nameController.text,
-                        email: emailController.text,
-                        password: passwordController.text,
+                        name: _nameController.text,
+                        email: _emailController.text,
+                        password: _passwordController.text,
                         role: selectedRole,
                       );
                       setState(() {
