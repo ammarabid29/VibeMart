@@ -34,4 +34,18 @@ class ItemModel {
       "discountPercentage": discountPercentage,
     };
   }
+
+  factory ItemModel.fromMap(Map<String, dynamic> map) {
+    return ItemModel(
+      name: map['name'] ?? '',
+      price: map['price'] ?? 0,
+      imageUrl: map['imageUrl'] ?? '',
+      uploadedBy: map['uploadedBy'] ?? '',
+      category: map['category'] ?? '',
+      size: List<String>.from(map['size'] ?? []),
+      color: List<String>.from(map['color'] ?? []),
+      isDiscounted: map['isDiscounted'] ?? false,
+      discountPercentage: map['discountPercentage'] ?? 0,
+    );
+  }
 }

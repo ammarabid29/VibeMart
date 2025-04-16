@@ -16,12 +16,12 @@ class CommonAppBar extends StatelessWidget implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      centerTitle: true,
-      title: Text(title),
       backgroundColor: kPrimaryColor,
       foregroundColor: kCardColor,
-      actions: actions,
+      centerTitle: true,
+      title: Text(title),
       leading: leading,
+      actions: actions,
     );
   }
 
