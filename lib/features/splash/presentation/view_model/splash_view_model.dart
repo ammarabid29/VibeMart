@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:vibemart/features/admin_panel/presentation/view/admin_panel_view/admin_panel_view.dart';
 import 'package:vibemart/features/auth/presentation/view/login/login_view.dart';
-import 'package:vibemart/features/home/presentation/view/home_view.dart';
 import 'package:vibemart/features/splash/data/repository/splash_repo_impl.dart';
 import 'package:vibemart/features/splash/domain/repository/splash_repo.dart';
+import 'package:vibemart/features/user_app/user_app.dart';
 
 class SplashViewModel {
   final SplashRepo _splashRepo = SplashRepoImpl();
@@ -21,7 +21,7 @@ class SplashViewModel {
       } else if (role == "User") {
         Navigator.pushReplacement(
           context,
-          MaterialPageRoute(builder: (_) => const HomeView()),
+          MaterialPageRoute(builder: (_) => const UserApp()),
         );
       } else {
         Navigator.pushReplacement(

@@ -41,7 +41,7 @@ class AdminPanelView extends ConsumerWidget {
                   child: Center(
                     child: Text(
                       "0",
-                      style: TextStyle(color: kCardColor, fontSize: 13),
+                      style: TextStyle(color: kBackgroundColor, fontSize: 13),
                     ),
                   ),
                 ),
@@ -71,7 +71,7 @@ class AdminPanelView extends ConsumerWidget {
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        foregroundColor: kCardColor,
+        foregroundColor: kBackgroundColor,
         backgroundColor: kPrimaryColor,
         child: Icon(Icons.add),
         onPressed: () {

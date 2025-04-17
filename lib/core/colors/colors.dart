@@ -5,8 +5,8 @@ const Color kPrimaryColor = Color(0xFF26A69A); // Teal
 const Color kAccentColor = Color(0xFFFF9800); // Vibrant Orange
 
 // BACKGROUND & SURFACE
-const Color kBackgroundColor = Color(0xFFF5F5F5); // Light Grey
-const Color kCardColor = Color(0xFFFFFFFF); // White
+const Color kBackgroundColor = Color(0xFFFFFFFF); // White
+const Color kCardColor = Color(0xFFF5F5F5); // Light Grey
 
 // TEXT COLORS
 const Color kTextPrimary = Color(0xFF212121); // Almost Black
@@ -22,7 +22,5 @@ const Color kGrayLight = Color(0xFFEEEEEE);
 const Color kGrayMedium = Color(0xFFBDBDBD);
 const Color kGrayDark = Color(0xFF616161);
 
-// Login/Signup Buttons: Use kPrimaryColor for call-to-action (CTA) buttons.
-// Highlight/Offers: Use kAccentColor to draw attention to discounts or featured items.
-// App Bar / Bottom Nav: White background (kCardColor) with icons in kPrimaryColor.
-// Text Fields: White background with kGrayLight borders, focus indicator in kPrimaryColor.
+// Banner Color
+const Color kBannerColor = Color(0xffc4d1da);

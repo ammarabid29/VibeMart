@@ -17,7 +17,7 @@ class CommonAppBar extends StatelessWidget implements PreferredSizeWidget {
   Widget build(BuildContext context) {
     return AppBar(
       backgroundColor: kPrimaryColor,
-      foregroundColor: kCardColor,
+      foregroundColor: kBackgroundColor,
       centerTitle: true,
       title: Text(title),
       leading: leading,

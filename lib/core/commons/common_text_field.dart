@@ -34,7 +34,7 @@ class CommonTextField extends StatelessWidget {
           borderSide: BorderSide(color: kGrayLight, width: 1.w),
         ),
         filled: true,
-        fillColor: kCardColor, // white background
+        fillColor: kBackgroundColor, // white background
       ),
       cursorColor: kPrimaryColor,
       style: TextStyle(color: kTextPrimary),

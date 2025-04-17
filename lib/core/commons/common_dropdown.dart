@@ -29,7 +29,7 @@ class CommonDropdown extends StatelessWidget {
           borderSide: BorderSide(color: kGrayLight, width: 1.5.w),
         ),
         filled: true,
-        fillColor: kCardColor, // white background
+        fillColor: kBackgroundColor, // white background
       ),
       items: items,
       onChanged: onChanged,

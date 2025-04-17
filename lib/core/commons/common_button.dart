@@ -23,7 +23,7 @@ class CommonButton extends StatelessWidget {
         onPressed: onPressed,
         style: ElevatedButton.styleFrom(
           backgroundColor: kPrimaryColor,
-          foregroundColor: kCardColor,
+          foregroundColor: kBackgroundColor,
           textStyle: TextStyle(fontSize: 16.sp, fontWeight: FontWeight.bold),
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(12.r),
