@@ -1,0 +1,39 @@
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:vibemart/features/admin_panel/domain/model/item_model.dart';
+import 'package:vibemart/features/admin_panel/data/repository/admin_repo_impl.dart';
+import 'package:vibemart/features/admin_panel/presentation/view_model/admin_panel_view_model/admin_panel_state.dart';
+
+class AdminPanelViewModel extends StateNotifier<AdminPanelState> {
+  final _repo = AdminRepoImpl();
+  final String uid = FirebaseAuth.instance.currentUser!.uid;
+
+  AdminPanelViewModel() : super(AdminPanelState()) {
+    fetchCategories();
+  }
+
+  void selectCategory(String? category) {
+    state = state.copyWith(selectedCategory: category);
+  }
+
+  Future<void> fetchCategories() async {
+    try {
+      final cats = await _repo.fetchCategories();
+      state = state.copyWith(categories: cats);
+    } catch (e) {
+      print("Error fetching categories: $e");
+    }
+  }
+
+  Stream<List<ItemModel>> getItemsStream() {
+    final collection = FirebaseFirestore.instance.collection("items");
+    var query = collection.where("uploadedBy", isEqualTo: uid);
+    if (state.selectedCategory != null) {
+      query = query.where("category", isEqualTo: state.selectedCategory);
+    }
+    return query.snapshots().map((snapshot) {
+      return snapshot.docs.map((doc) => ItemModel.fromMap(doc.data())).toList();
+    });
+  }
+}
