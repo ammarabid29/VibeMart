@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import 'package:vibemart/core/colors/colors.dart';
 
 class CustomBanner extends StatelessWidget {

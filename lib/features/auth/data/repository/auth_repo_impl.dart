@@ -3,6 +3,7 @@ import 'package:vibemart/features/auth/domain/repository/auth_repo.dart';
 
 class AuthRepoImpl implements AuthRepo {
   final FirebaseAuthService _firebaseAuthService = FirebaseAuthService();
+
   @override
   Future<String> loginUser({required String email, required String password}) {
     try {

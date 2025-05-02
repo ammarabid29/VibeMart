@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+
 import 'package:vibemart/core/commons/custom_toasts.dart';
 import 'package:vibemart/features/auth/presentation/view/signup/signup_view.dart';
 import 'package:vibemart/features/auth/presentation/view/widgets/auth_navigation_text.dart';

@@ -1,18 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:iconsax/iconsax.dart';
-import 'package:vibemart/core/colors/colors.dart';
-import 'package:vibemart/features/user_app/home/domain/models/category_model.dart';
-import 'package:vibemart/features/user_app/home/domain/models/shop_item_model.dart';
-import 'package:vibemart/features/user_app/home/presentation/view/item_details_view.dart';
-import 'package:vibemart/features/user_app/home/presentation/view/widgets/curated_list_item.dart';
 
-class CategoryItemView extends StatelessWidget {
-  final List<ShopItemModel> categoryItems;
+import 'package:vibemart/core/colors/colors.dart';
+import 'package:vibemart/features/user_app/user_home/domain/models/category_model.dart';
+import 'package:vibemart/features/user_app/user_home/domain/models/shop_item_model.dart';
+import 'package:vibemart/features/user_app/user_home/presentation/view/item_details_view/item_details_view.dart';
+import 'package:vibemart/features/user_app/user_home/presentation/view/widgets/curated_list_item.dart';
+
+class CategoryItemsView extends StatelessWidget {
+  final List<ShopItemModel> categoryShopItems;
   final String category;
-  const CategoryItemView({
+  const CategoryItemsView({
     super.key,
-    required this.categoryItems,
+    required this.categoryShopItems,
     required this.category,
   });
 
@@ -99,7 +100,7 @@ class CategoryItemView extends StatelessWidget {
             // Main Body
             Expanded(
               child:
-                  categoryItems.isEmpty
+                  categoryShopItems.isEmpty
                       ? Center(child: Text("No Items available to show"))
                       : GridView.builder(
                         padding: EdgeInsets.symmetric(horizontal: 20),
@@ -109,7 +110,7 @@ class CategoryItemView extends StatelessWidget {
                           mainAxisSpacing: 16,
                           crossAxisSpacing: 16,
                         ),
-                        itemCount: categoryItems.length,
+                        itemCount: categoryShopItems.length,
                         itemBuilder:
                             (ctx, index) => GestureDetector(
                               onTap: () {
@@ -117,13 +118,14 @@ class CategoryItemView extends StatelessWidget {
                                   MaterialPageRoute(
                                     builder:
                                         (ctx) => ItemDetailsView(
-                                          shopItemModel: categoryItems[index],
+                                          shopItemModel:
+                                              categoryShopItems[index],
                                         ),
                                   ),
                                 );
                               },
                               child: CuratedListItem(
-                                eCommerceItem: categoryItems[index],
+                                shopItem: categoryShopItems[index],
                               ),
                             ),
                       ),

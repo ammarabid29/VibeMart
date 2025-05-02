@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:iconsax/iconsax.dart';
+
 import 'package:vibemart/core/colors/colors.dart';
-import 'package:vibemart/features/user_app/home/presentation/view/home_view.dart';
+import 'package:vibemart/features/user_app/user_home/presentation/view/user_home_view/user_home_view.dart';
 
 class UserApp extends StatefulWidget {
   const UserApp({super.key});
@@ -13,7 +14,7 @@ class UserApp extends StatefulWidget {
 class _UserAppState extends State<UserApp> {
   int selectedIndex = 0;
   final List pages = [
-    const HomeView(),
+    const UserHomeView(),
     const Scaffold(),
     const Scaffold(),
     const Scaffold(),

@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+
 import 'package:vibemart/core/colors/colors.dart';
-import 'package:vibemart/features/user_app/home/domain/models/shop_item_model.dart';
+import 'package:vibemart/features/user_app/user_home/domain/models/shop_item_model.dart';
 
 class CuratedListItem extends StatelessWidget {
-  final ShopItemModel eCommerceItem;
-  const CuratedListItem({super.key, required this.eCommerceItem});
+  final ShopItemModel shopItem;
+  const CuratedListItem({super.key, required this.shopItem});
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +22,7 @@ class CuratedListItem extends StatelessWidget {
             borderRadius: BorderRadius.circular(8),
             image: DecorationImage(
               fit: BoxFit.cover,
-              image: AssetImage(eCommerceItem.image),
+              image: AssetImage(shopItem.image),
             ),
           ),
           child: Padding(
@@ -46,7 +47,7 @@ class CuratedListItem extends StatelessWidget {
             SizedBox(width: 8.w),
             Icon(Icons.star, color: Colors.amber, size: 16.sp),
             Text(
-              "${eCommerceItem.rating}",
+              "${shopItem.rating}",
               style: TextStyle(
                 fontSize: 12.sp,
                 color: Colors.grey[600],
@@ -55,7 +56,7 @@ class CuratedListItem extends StatelessWidget {
               ),
             ),
             Text(
-              "(${eCommerceItem.review})",
+              "(${shopItem.review})",
               style: TextStyle(
                 fontSize: 12.sp,
                 color: Colors.grey[600],
@@ -66,7 +67,7 @@ class CuratedListItem extends StatelessWidget {
         ),
         SizedBox(height: 2.h),
         Text(
-          eCommerceItem.name,
+          shopItem.name,
           style: TextStyle(
             fontWeight: FontWeight.bold,
             fontSize: 14.sp,
@@ -79,7 +80,7 @@ class CuratedListItem extends StatelessWidget {
         Row(
           children: [
             Text(
-              "\$${eCommerceItem.price}.00",
+              "\$${shopItem.price}.00",
               style: TextStyle(
                 fontWeight: FontWeight.w600,
                 fontSize: 18.sp,
@@ -88,9 +89,9 @@ class CuratedListItem extends StatelessWidget {
               ),
             ),
             SizedBox(width: 4.h),
-            if (eCommerceItem.isCheck)
+            if (shopItem.isCheck)
               Text(
-                "\$${eCommerceItem.price + 200}.00",
+                "\$${shopItem.price + 200}.00",
                 style: TextStyle(
                   color: Colors.black26,
                   decoration: TextDecoration.lineThrough,

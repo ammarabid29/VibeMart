@@ -22,7 +22,7 @@ class ShopItemModel {
   });
 }
 
-List<ShopItemModel> fashionEcommerceApp = [
+List<ShopItemModel> shopItemsList = [
   ShopItemModel(
     name: "Men's Casual Shirt",
     image: "assets/images/logo.png",

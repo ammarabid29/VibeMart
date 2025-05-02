@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import 'package:vibemart/features/splash/presentation/view_model/splash_view_model.dart';
 
 class SplashView extends StatefulWidget {
