@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:iconsax/iconsax.dart';
 
 import 'package:vibemart/core/colors/colors.dart';
-import 'package:vibemart/features/user_app/user_home/presentation/view/user_home_view/user_home_view.dart';
+import 'package:vibemart/features/user_app/user_home/presentation/view/user_home_view.dart';
 
 class UserApp extends StatefulWidget {
   const UserApp({super.key});
@@ -31,8 +31,9 @@ class _UserAppState extends State<UserApp> {
         selectedItemColor: kTextPrimary,
         type: BottomNavigationBarType.fixed,
         onTap: (value) {
-          setState(() {});
-          selectedIndex = value;
+          setState(() {
+            selectedIndex = value;
+          });
         },
         items: [
           BottomNavigationBarItem(icon: Icon(Iconsax.home), label: "Home"),

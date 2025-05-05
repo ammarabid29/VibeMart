@@ -5,11 +5,11 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'package:vibemart/core/colors/colors.dart';
-import 'package:vibemart/core/commons/common_app_bar.dart';
-import 'package:vibemart/core/commons/common_button.dart';
-import 'package:vibemart/core/commons/common_dropdown.dart';
-import 'package:vibemart/core/commons/common_text_field.dart';
-import 'package:vibemart/core/commons/custom_toasts.dart';
+import 'package:vibemart/core/commons/common_widgets/common_app_bar.dart';
+import 'package:vibemart/core/commons/common_widgets/common_button.dart';
+import 'package:vibemart/core/commons/common_widgets/common_dropdown.dart';
+import 'package:vibemart/core/commons/common_widgets/common_text_field.dart';
+import 'package:vibemart/core/commons/common_widgets/custom_toasts.dart';
 import 'package:vibemart/features/admin_panel/presentation/view_model/add_item_view_model/add_item_state.dart';
 import 'package:vibemart/features/admin_panel/presentation/view_model/add_item_view_model/add_item_view_model.dart';
 

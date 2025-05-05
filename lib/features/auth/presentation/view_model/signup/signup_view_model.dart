@@ -1,7 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
-import 'package:vibemart/core/commons/custom_toasts.dart';
+import 'package:vibemart/core/commons/common_widgets/custom_toasts.dart';
 import 'package:vibemart/features/auth/data/repository/auth_repo_impl.dart';
 import 'package:vibemart/features/auth/domain/repository/auth_repo.dart';
 import 'package:vibemart/features/auth/presentation/view/login/login_view.dart';

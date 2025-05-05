@@ -3,15 +3,11 @@ import 'dart:io';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:http/http.dart' as http;
 import 'package:image_picker/image_picker.dart';
+import 'package:vibemart/core/commons/common_data_source/common_data_source.dart';
 
 import 'package:vibemart/features/admin_panel/domain/model/item_model.dart';
 
 class FirebaseItemsSource {
-  final CollectionReference itemsCollection = FirebaseFirestore.instance
-      .collection("items");
-  final CollectionReference categoriesCollection = FirebaseFirestore.instance
-      .collection("categories");
-
   // pick image from gallery and add in state
   Future<String?> pickImage() async {
     try {

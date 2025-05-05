@@ -4,7 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'package:vibemart/core/colors/colors.dart';
-import 'package:vibemart/core/commons/common_app_bar.dart';
+import 'package:vibemart/core/commons/common_widgets/common_app_bar.dart';
 import 'package:vibemart/features/admin_panel/domain/model/item_model.dart';
 import 'package:vibemart/features/admin_panel/presentation/view/add_item_view/add_item_view.dart';
 import 'package:vibemart/features/admin_panel/presentation/view/widgets/custom_list_tile.dart';

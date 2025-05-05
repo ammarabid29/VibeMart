@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import 'package:vibemart/core/commons/common_dropdown.dart';
-import 'package:vibemart/core/commons/custom_toasts.dart';
+import 'package:vibemart/core/commons/common_widgets/common_dropdown.dart';
+import 'package:vibemart/core/commons/common_widgets/custom_toasts.dart';
 import 'package:vibemart/features/auth/presentation/view/login/login_view.dart';
 import 'package:vibemart/features/auth/presentation/view/widgets/auth_navigation_text.dart';
-import 'package:vibemart/core/commons/common_button.dart';
-import 'package:vibemart/core/commons/common_text_field.dart';
+import 'package:vibemart/core/commons/common_widgets/common_button.dart';
+import 'package:vibemart/core/commons/common_widgets/common_text_field.dart';
 import 'package:vibemart/features/auth/presentation/view_model/signup/signup_view_model.dart';
 
 class SignupView extends StatefulWidget {
