@@ -8,7 +8,7 @@ import 'package:vibemart/features/user_app/user_home/domain/models/shop_item_mod
 import 'package:vibemart/features/user_app/user_home/presentation/view/widgets/curated_list_widget.dart';
 import 'package:vibemart/features/user_app/user_home/presentation/view/widgets/item_details_view.dart';
 
-class CategoryItemsView extends StatelessWidget {
+class CategoryItemsView extends StatefulWidget {
   final List<ShopItemModel> categoryShopItems;
   final String category;
   const CategoryItemsView({
@@ -16,6 +16,38 @@ class CategoryItemsView extends StatelessWidget {
     required this.categoryShopItems,
     required this.category,
   });
+
+  @override
+  State<CategoryItemsView> createState() => _CategoryItemsViewState();
+}
+
+class _CategoryItemsViewState extends State<CategoryItemsView> {
+  final TextEditingController searchController = TextEditingController();
+  List<ShopItemModel> filteredList = [];
+
+  @override
+  void initState() {
+    super.initState();
+    filteredList = widget.categoryShopItems;
+    searchController.addListener(_onSearchChanged);
+  }
+
+  @override
+  void dispose() {
+    searchController.removeListener(_onSearchChanged);
+    searchController.dispose();
+    super.dispose();
+  }
+
+  void _onSearchChanged() {
+    final query = searchController.text.toLowerCase();
+    setState(() {
+      filteredList =
+          widget.categoryShopItems.where((item) {
+            return item.name.toLowerCase().contains(query);
+          }).toList();
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -41,9 +73,10 @@ class CategoryItemsView extends StatelessWidget {
                     child: SizedBox(
                       height: 45,
                       child: TextField(
+                        controller: searchController,
                         decoration: InputDecoration(
                           contentPadding: EdgeInsets.all(5),
-                          hintText: "$category's Fashion",
+                          hintText: "${widget.category}'s Fashion",
                           hintStyle: TextStyle(color: Colors.black38),
                           filled: true,
                           fillColor: kGrayLight,
@@ -100,7 +133,7 @@ class CategoryItemsView extends StatelessWidget {
             // Main Body
             Expanded(
               child:
-                  categoryShopItems.isEmpty
+                  filteredList.isEmpty
                       ? Center(child: Text("No Items available to show"))
                       : GridView.builder(
                         padding: EdgeInsets.symmetric(horizontal: 20),
@@ -110,7 +143,7 @@ class CategoryItemsView extends StatelessWidget {
                           mainAxisSpacing: 16,
                           crossAxisSpacing: 16,
                         ),
-                        itemCount: categoryShopItems.length,
+                        itemCount: filteredList.length,
                         itemBuilder:
                             (ctx, index) => GestureDetector(
                               onTap: () {
@@ -118,14 +151,13 @@ class CategoryItemsView extends StatelessWidget {
                                   MaterialPageRoute(
                                     builder:
                                         (ctx) => ItemDetailsView(
-                                          shopItemModel:
-                                              categoryShopItems[index],
+                                          shopItemModel: filteredList[index],
                                         ),
                                   ),
                                 );
                               },
                               child: CuratedListWidget(
-                                shopItem: categoryShopItems[index],
+                                shopItem: filteredList[index],
                               ),
                             ),
                       ),

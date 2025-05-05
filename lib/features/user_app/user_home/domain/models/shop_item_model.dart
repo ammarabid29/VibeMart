@@ -36,7 +36,7 @@ List<ShopItemModel> shopItemsList = [
     isCheck: true,
   ),
   ShopItemModel(
-    name: "Men's Casual Shirt",
+    name: "Casual Shirt pant",
     image: "assets/images/logo.png",
     description: "Comfortable cotton shirt for everyday wear.",
     category: "Men",
