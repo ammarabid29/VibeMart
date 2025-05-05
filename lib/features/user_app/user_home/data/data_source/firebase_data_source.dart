@@ -9,4 +9,13 @@ class FirebaseDataSource {
       }).toList();
     });
   }
+
+  // Stream<List<CategoryModel>> getItemsStream() {
+  //   return itemsCollection.snapshots().map((snapshot) {
+  //     return snapshot.docs.map((doc) {
+  //        Todo
+  //       return CategoryModel.fromJson(doc.data() as Map<String, dynamic>);
+  //     }).toList();
+  //   });
+  // }
 }

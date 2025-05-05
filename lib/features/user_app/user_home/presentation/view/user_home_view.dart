@@ -3,21 +3,14 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:iconsax/iconsax.dart';
 
 import 'package:vibemart/core/colors/colors.dart';
-import 'package:vibemart/features/user_app/user_home/domain/models/shop_item_model.dart';
 import 'package:vibemart/features/user_app/user_home/presentation/view/widgets/category_list_widget.dart';
-import 'package:vibemart/features/user_app/user_home/presentation/view/widgets/curated_list_widget.dart';
 import 'package:vibemart/core/commons/common_widgets/custom_banner.dart';
 import 'package:vibemart/core/commons/common_widgets/custom_heading.dart';
-import 'package:vibemart/features/user_app/user_home/presentation/view/widgets/item_details_view.dart';
+import 'package:vibemart/features/user_app/user_home/presentation/view/widgets/items_list_widget.dart';
 
-class UserHomeView extends StatefulWidget {
+class UserHomeView extends StatelessWidget {
   const UserHomeView({super.key});
 
-  @override
-  State<UserHomeView> createState() => _UserHomeViewState();
-}
-
-class _UserHomeViewState extends State<UserHomeView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -74,34 +67,8 @@ class _UserHomeViewState extends State<UserHomeView> {
             // Categories List View
             CategoryListWidget(),
             CustomHeading(text: "Curated For You"),
-            // Curated for you List View
-            SingleChildScrollView(
-              scrollDirection: Axis.horizontal,
-              child: Row(
-                children: List.generate(
-                  shopItemsList.length,
-                  (index) => Padding(
-                    padding:
-                        index == 0
-                            ? const EdgeInsets.symmetric(horizontal: 20)
-                            : const EdgeInsets.only(right: 20),
-                    child: InkWell(
-                      onTap: () {
-                        Navigator.of(context).push(
-                          MaterialPageRoute(
-                            builder:
-                                (ctx) => ItemDetailsView(
-                                  shopItemModel: shopItemsList[index],
-                                ),
-                          ),
-                        );
-                      },
-                      child: CuratedListWidget(shopItem: shopItemsList[index]),
-                    ),
-                  ),
-                ),
-              ),
-            ),
+            // Items List View
+            ItemsListWidget(),
           ],
         ),
       ),

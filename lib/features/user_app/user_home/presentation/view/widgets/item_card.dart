@@ -4,9 +4,9 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:vibemart/core/colors/colors.dart';
 import 'package:vibemart/features/user_app/user_home/domain/models/shop_item_model.dart';
 
-class CuratedListWidget extends StatelessWidget {
+class ItemCard extends StatelessWidget {
   final ShopItemModel shopItem;
-  const CuratedListWidget({super.key, required this.shopItem});
+  const ItemCard({super.key, required this.shopItem});
 
   @override
   Widget build(BuildContext context) {

@@ -5,7 +5,7 @@ import 'package:iconsax/iconsax.dart';
 import 'package:vibemart/core/colors/colors.dart';
 import 'package:vibemart/features/user_app/user_home/domain/models/category_model.dart';
 import 'package:vibemart/features/user_app/user_home/domain/models/shop_item_model.dart';
-import 'package:vibemart/features/user_app/user_home/presentation/view/widgets/curated_list_widget.dart';
+import 'package:vibemart/features/user_app/user_home/presentation/view/widgets/item_card.dart';
 import 'package:vibemart/features/user_app/user_home/presentation/view/widgets/item_details_view.dart';
 
 class CategoryItemsView extends StatefulWidget {
@@ -156,9 +156,7 @@ class _CategoryItemsViewState extends State<CategoryItemsView> {
                                   ),
                                 );
                               },
-                              child: CuratedListWidget(
-                                shopItem: filteredList[index],
-                              ),
+                              child: ItemCard(shopItem: filteredList[index]),
                             ),
                       ),
             ),
