@@ -7,8 +7,14 @@ import 'package:vibemart/features/user_app/user_home/domain/models/item_model.da
 
 class ItemDetailsView extends StatefulWidget {
   final ItemModel itemModel;
-
-  const ItemDetailsView({super.key, required this.itemModel});
+  final double randomRating;
+  final int randomReviews;
+  const ItemDetailsView({
+    super.key,
+    required this.itemModel,
+    required this.randomRating,
+    required this.randomReviews,
+  });
 
   @override
   State<ItemDetailsView> createState() => _ItemDetailsViewState();
@@ -103,7 +109,7 @@ class _ItemDetailsViewState extends State<ItemDetailsView> {
                           SizedBox(width: 8.w),
                           Icon(Icons.star, color: Colors.amber, size: 16.sp),
                           Text(
-                            "4.5",
+                            widget.randomRating.toString(),
                             style: TextStyle(
                               fontSize: 12.sp,
                               fontWeight: FontWeight.bold,
@@ -111,7 +117,7 @@ class _ItemDetailsViewState extends State<ItemDetailsView> {
                             ),
                           ),
                           Text(
-                            "(45)",
+                            "(${widget.randomReviews})",
                             style: TextStyle(
                               fontSize: 12.sp,
                               color: Colors.grey[600],
