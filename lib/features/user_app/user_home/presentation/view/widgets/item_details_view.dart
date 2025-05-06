@@ -3,23 +3,31 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:iconsax/iconsax.dart';
 
 import 'package:vibemart/core/colors/colors.dart';
-import 'package:vibemart/features/user_app/user_home/domain/models/shop_item_model.dart';
+import 'package:vibemart/features/user_app/user_home/domain/models/item_model.dart';
 
 class ItemDetailsView extends StatefulWidget {
-  final ShopItemModel shopItemModel;
+  final ItemModel itemModel;
 
-  const ItemDetailsView({super.key, required this.shopItemModel});
+  const ItemDetailsView({super.key, required this.itemModel});
 
   @override
   State<ItemDetailsView> createState() => _ItemDetailsViewState();
 }
 
 class _ItemDetailsViewState extends State<ItemDetailsView> {
-  int selectedColorIndex = 1;
-  int selectedSizeIndex = 1;
+  int selectedColorIndex = 0;
+  int selectedSizeIndex = 0;
 
   @override
   Widget build(BuildContext context) {
+    double discountedPrice =
+        widget.itemModel.isDiscounted
+            ? widget.itemModel.price -
+                (widget.itemModel.price *
+                    widget.itemModel.discountPercentage /
+                    100)
+            : widget.itemModel.price.toDouble();
+
     return Scaffold(
       backgroundColor: kBackgroundColor,
       appBar: AppBar(
@@ -65,125 +73,124 @@ class _ItemDetailsViewState extends State<ItemDetailsView> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           // Image
-          Image.asset(
-            widget.shopItemModel.image,
+          Image.network(
+            widget.itemModel.imageUrl,
             height: 300.h,
             width: double.infinity,
             fit: BoxFit.cover,
           ),
 
-          // details
-          SingleChildScrollView(
-            padding: EdgeInsets.all(16.r),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                // Rating + Favorite
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Row(
-                      children: [
-                        Text(
-                          "H&M",
-                          style: TextStyle(
-                            fontSize: 12.sp,
-                            color: Colors.grey[600],
-                          ),
-                        ),
-                        SizedBox(width: 8.w),
-                        Icon(Icons.star, color: Colors.amber, size: 16.sp),
-                        Text(
-                          "${widget.shopItemModel.rating}",
-                          style: TextStyle(
-                            fontSize: 12.sp,
-                            color: Colors.grey[600],
-                            fontWeight: FontWeight.bold,
-                            letterSpacing: 0,
-                          ),
-                        ),
-                        Text(
-                          "(${widget.shopItemModel.review})",
-                          style: TextStyle(
-                            fontSize: 12.sp,
-                            color: Colors.grey[600],
-                            letterSpacing: 0,
-                          ),
-                        ),
-                      ],
-                    ),
-                    CircleAvatar(
-                      backgroundColor: Colors.transparent,
-                      radius: 20.r,
-                      child: Icon(Icons.favorite_outline, color: kPrimaryColor),
-                    ),
-                  ],
-                ),
-
-                // Title
-                Text(
-                  widget.shopItemModel.name,
-                  style: TextStyle(
-                    fontSize: 20.sp,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-                SizedBox(height: 8.h),
-
-                // Price
-                Row(
-                  children: [
-                    Text(
-                      "\$${widget.shopItemModel.price}.00",
-                      style: TextStyle(
-                        fontWeight: FontWeight.w600,
-                        fontSize: 18.sp,
-                        height: 1.5,
-                        color: Colors.pink,
-                      ),
-                    ),
-                    SizedBox(width: 4.h),
-                    if (widget.shopItemModel.isCheck)
-                      Text(
-                        "\$${widget.shopItemModel.price + 200}.00",
-                        style: TextStyle(
-                          color: Colors.black26,
-                          decoration: TextDecoration.lineThrough,
-                          decorationColor: Colors.black26,
-                        ),
-                      ),
-                  ],
-                ),
-                SizedBox(height: 8.h),
-
-                // Description
-                Text(
-                  widget.shopItemModel.description,
-                  style: TextStyle(fontSize: 14.sp, color: Colors.black87),
-                ),
-                SizedBox(height: 8.h),
-
-                // Sizes & Colors
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    // Sizes
-                    Expanded(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
+          // Details
+          Expanded(
+            child: SingleChildScrollView(
+              padding: EdgeInsets.all(16.r),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  // Rating + Favorite
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Row(
                         children: [
                           Text(
-                            "Sizes",
-                            style: TextStyle(fontWeight: FontWeight.w600),
+                            "H&M",
+                            style: TextStyle(
+                              fontSize: 12.sp,
+                              color: Colors.grey[600],
+                            ),
                           ),
-                          SingleChildScrollView(
-                            scrollDirection: Axis.horizontal,
-                            child: Row(
-                              children:
-                                  widget.shopItemModel.size.asMap().entries.map(
-                                    (s) {
-                                      final int index = s.key;
-                                      final size = s.value;
+                          SizedBox(width: 8.w),
+                          Icon(Icons.star, color: Colors.amber, size: 16.sp),
+                          Text(
+                            "4.5",
+                            style: TextStyle(
+                              fontSize: 12.sp,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.grey[600],
+                            ),
+                          ),
+                          Text(
+                            "(45)",
+                            style: TextStyle(
+                              fontSize: 12.sp,
+                              color: Colors.grey[600],
+                            ),
+                          ),
+                        ],
+                      ),
+                      CircleAvatar(
+                        backgroundColor: Colors.transparent,
+                        radius: 20.r,
+                        child: Icon(
+                          Icons.favorite_outline,
+                          color: kPrimaryColor,
+                        ),
+                      ),
+                    ],
+                  ),
+
+                  // Name
+                  SizedBox(height: 8.h),
+                  Text(
+                    widget.itemModel.name,
+                    style: TextStyle(
+                      fontSize: 20.sp,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+
+                  SizedBox(height: 8.h),
+
+                  // Price
+                  Row(
+                    children: [
+                      Text(
+                        "\$${discountedPrice.toStringAsFixed(2)}",
+                        style: TextStyle(
+                          fontWeight: FontWeight.w600,
+                          fontSize: 18.sp,
+                          height: 1.5,
+                          color: Colors.pink,
+                        ),
+                      ),
+                      SizedBox(width: 8.w),
+                      if (widget.itemModel.isDiscounted)
+                        Text(
+                          "\$${widget.itemModel.price.toStringAsFixed(2)}",
+                          style: TextStyle(
+                            color: Colors.black26,
+                            decoration: TextDecoration.lineThrough,
+                            decorationColor: Colors.black26,
+                          ),
+                        ),
+                    ],
+                  ),
+                  SizedBox(height: 12.h),
+
+                  // Sizes & Colors
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      // Sizes
+                      Expanded(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              "Sizes",
+                              style: TextStyle(fontWeight: FontWeight.w600),
+                            ),
+                            SizedBox(height: 8.h),
+                            SingleChildScrollView(
+                              scrollDirection: Axis.horizontal,
+                              child: Row(
+                                children:
+                                    widget.itemModel.size.asMap().entries.map((
+                                      entry,
+                                    ) {
+                                      final index = entry.key;
+                                      final size = entry.value;
                                       return GestureDetector(
                                         onTap: () {
                                           setState(() {
@@ -221,74 +228,94 @@ class _ItemDetailsViewState extends State<ItemDetailsView> {
                                           ),
                                         ),
                                       );
-                                    },
-                                  ).toList(),
+                                    }).toList(),
+                              ),
                             ),
-                          ),
-                        ],
+                          ],
+                        ),
                       ),
-                    ),
-                    SizedBox(width: 12.w),
 
-                    // Colors
-                    Expanded(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            "Colors",
-                            style: TextStyle(fontWeight: FontWeight.w600),
-                          ),
-                          SingleChildScrollView(
-                            scrollDirection: Axis.horizontal,
-                            child: Row(
-                              children:
-                                  widget.shopItemModel.fColor
-                                      .asMap()
-                                      .entries
-                                      .map((s) {
-                                        final int index = s.key;
-                                        final color = s.value;
-                                        return Padding(
-                                          padding: EdgeInsets.only(
-                                            top: 10,
-                                            right: 10,
+                      SizedBox(width: 12.w),
+
+                      // Colors
+                      // Colors
+                      Expanded(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              "Colors",
+                              style: TextStyle(fontWeight: FontWeight.w600),
+                            ),
+                            SizedBox(height: 8.h),
+                            SingleChildScrollView(
+                              scrollDirection: Axis.horizontal,
+                              child: Row(
+                                children:
+                                    widget.itemModel.color.asMap().entries.map((
+                                      entry,
+                                    ) {
+                                      final index = entry.key;
+                                      final colorName = entry.value;
+
+                                      final isSelected =
+                                          selectedColorIndex == index;
+
+                                      return GestureDetector(
+                                        onTap: () {
+                                          setState(() {
+                                            selectedColorIndex = index;
+                                          });
+                                        },
+                                        child: Container(
+                                          margin: EdgeInsets.only(right: 10),
+                                          padding: EdgeInsets.symmetric(
+                                            horizontal: 12.w,
+                                            vertical: 8.h,
                                           ),
-                                          child: CircleAvatar(
-                                            radius: 18,
-                                            backgroundColor: color,
-                                            child: InkWell(
-                                              onTap: () {
-                                                setState(() {
-                                                  selectedColorIndex = index;
-                                                });
-                                              },
-                                              child: Icon(
-                                                Icons.check,
-                                                color:
-                                                    selectedColorIndex == index
-                                                        ? kBackgroundColor
-                                                        : Colors.transparent,
-                                              ),
+                                          decoration: BoxDecoration(
+                                            color:
+                                                isSelected
+                                                    ? Colors.black
+                                                    : kBackgroundColor,
+                                            border: Border.all(
+                                              color:
+                                                  isSelected
+                                                      ? Colors.black
+                                                      : Colors.black12,
+                                            ),
+                                            borderRadius: BorderRadius.circular(
+                                              20.r,
                                             ),
                                           ),
-                                        );
-                                      })
-                                      .toList(),
+                                          child: Text(
+                                            colorName,
+                                            style: TextStyle(
+                                              fontWeight: FontWeight.bold,
+                                              color:
+                                                  isSelected
+                                                      ? Colors.white
+                                                      : Colors.black,
+                                            ),
+                                          ),
+                                        ),
+                                      );
+                                    }).toList(),
+                              ),
                             ),
-                          ),
-                        ],
+                          ],
+                        ),
                       ),
-                    ),
-                  ],
-                ),
-              ],
+                    ],
+                  ),
+                ],
+              ),
             ),
           ),
         ],
       ),
 
-      // actions buttons
+      // Bottom Buttons
       bottomNavigationBar: Padding(
         padding: EdgeInsets.symmetric(horizontal: 16.r, vertical: 16.r),
         child: Row(
@@ -303,9 +330,7 @@ class _ItemDetailsViewState extends State<ItemDetailsView> {
                     borderRadius: BorderRadius.circular(12.r),
                   ),
                 ),
-                onPressed: () {
-                  // Add to cart action
-                },
+                onPressed: () {},
                 child: Text("Add to Cart", style: TextStyle(fontSize: 16.sp)),
               ),
             ),
@@ -320,9 +345,7 @@ class _ItemDetailsViewState extends State<ItemDetailsView> {
                     borderRadius: BorderRadius.circular(12.r),
                   ),
                 ),
-                onPressed: () {
-                  // Buy now action
-                },
+                onPressed: () {},
                 child: Text("Buy Now", style: TextStyle(fontSize: 16.sp)),
               ),
             ),

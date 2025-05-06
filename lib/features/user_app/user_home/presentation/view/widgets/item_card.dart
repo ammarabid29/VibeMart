@@ -2,15 +2,22 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'package:vibemart/core/colors/colors.dart';
-import 'package:vibemart/features/user_app/user_home/domain/models/shop_item_model.dart';
+import 'package:vibemart/features/user_app/user_home/domain/models/item_model.dart';
 
 class ItemCard extends StatelessWidget {
-  final ShopItemModel shopItem;
-  const ItemCard({super.key, required this.shopItem});
+  final ItemModel item;
+  const ItemCard({super.key, required this.item});
 
   @override
   Widget build(BuildContext context) {
     final Size size = MediaQuery.of(context).size;
+
+    final double originalPrice = item.price.toDouble();
+    final double discountedPrice =
+        item.isDiscounted
+            ? originalPrice * (1 - item.discountPercentage / 100)
+            : originalPrice;
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -22,11 +29,11 @@ class ItemCard extends StatelessWidget {
             borderRadius: BorderRadius.circular(8),
             image: DecorationImage(
               fit: BoxFit.cover,
-              image: AssetImage(shopItem.image),
+              image: NetworkImage(item.imageUrl),
             ),
           ),
           child: Padding(
-            padding: EdgeInsets.all(12),
+            padding: const EdgeInsets.all(12),
             child: Align(
               alignment: Alignment.topRight,
               child: CircleAvatar(
@@ -47,7 +54,7 @@ class ItemCard extends StatelessWidget {
             SizedBox(width: 8.w),
             Icon(Icons.star, color: Colors.amber, size: 16.sp),
             Text(
-              "${shopItem.rating}",
+              "4.5", // placeholder rating
               style: TextStyle(
                 fontSize: 12.sp,
                 color: Colors.grey[600],
@@ -56,7 +63,7 @@ class ItemCard extends StatelessWidget {
               ),
             ),
             Text(
-              "(${shopItem.review})",
+              "(120)", // placeholder review count
               style: TextStyle(
                 fontSize: 12.sp,
                 color: Colors.grey[600],
@@ -67,7 +74,7 @@ class ItemCard extends StatelessWidget {
         ),
         SizedBox(height: 2.h),
         Text(
-          shopItem.name,
+          item.name,
           style: TextStyle(
             fontWeight: FontWeight.bold,
             fontSize: 14.sp,
@@ -80,7 +87,7 @@ class ItemCard extends StatelessWidget {
         Row(
           children: [
             Text(
-              "\$${shopItem.price}.00",
+              "\$${discountedPrice.toStringAsFixed(2)}",
               style: TextStyle(
                 fontWeight: FontWeight.w600,
                 fontSize: 18.sp,
@@ -88,10 +95,10 @@ class ItemCard extends StatelessWidget {
                 color: Colors.pink,
               ),
             ),
-            SizedBox(width: 4.h),
-            if (shopItem.isCheck)
+            SizedBox(width: 4.w),
+            if (item.isDiscounted)
               Text(
-                "\$${shopItem.price + 200}.00",
+                "\$${originalPrice.toStringAsFixed(2)}",
                 style: TextStyle(
                   color: Colors.black26,
                   decoration: TextDecoration.lineThrough,
