@@ -2,7 +2,7 @@ import 'package:vibemart/core/commons/common_data_source/common_data_source.dart
 import 'package:vibemart/features/user_home/domain/models/category_model.dart';
 import 'package:vibemart/features/user_home/domain/models/item_model.dart';
 
-class FirebaseDataSource {
+class UserHomeSource {
   Stream<List<CategoryModel>> getCategoryStream() {
     return categoriesCollection.snapshots().map((snapshot) {
       return snapshot.docs.map((doc) {

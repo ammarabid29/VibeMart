@@ -1,12 +1,12 @@
-import 'package:vibemart/features/splash/data/data_source/firebase_splash_service.dart';
+import 'package:vibemart/features/splash/data/data_source/splash_source.dart';
 import 'package:vibemart/features/splash/domain/repository/splash_repo.dart';
 
 class SplashRepoImpl implements SplashRepo {
-  final FirebaseSplashService _splashService = FirebaseSplashService();
+  final SplashSource _splashSource = SplashSource();
 
   Future<String?> checkUserRole() async {
     try {
-      return await _splashService.checkUserRole();
+      return await _splashSource.checkUserRole();
     } catch (_) {
       rethrow;
     }

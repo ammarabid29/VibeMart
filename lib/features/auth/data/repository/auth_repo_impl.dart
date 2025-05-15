@@ -1,13 +1,13 @@
-import 'package:vibemart/features/auth/data/data_source/firebase_auth_service.dart';
+import 'package:vibemart/features/auth/data/data_source/auth_source.dart';
 import 'package:vibemart/features/auth/domain/repository/auth_repo.dart';
 
 class AuthRepoImpl implements AuthRepo {
-  final FirebaseAuthService _firebaseAuthService = FirebaseAuthService();
+  final AuthSource _authSource = AuthSource();
 
   @override
   Future<String> loginUser({required String email, required String password}) {
     try {
-      return _firebaseAuthService.loginUser(email: email, password: password);
+      return _authSource.loginUser(email: email, password: password);
     } catch (e) {
       rethrow;
     }
@@ -21,7 +21,7 @@ class AuthRepoImpl implements AuthRepo {
     required String role,
   }) {
     try {
-      return _firebaseAuthService.signupUser(
+      return _authSource.signupUser(
         name: name,
         email: email,
         password: password,

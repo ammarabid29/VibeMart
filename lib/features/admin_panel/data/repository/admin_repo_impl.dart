@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:vibemart/features/admin_panel/data/data_source/firebase_items_source.dart';
+import 'package:vibemart/features/admin_panel/data/data_source/admin_panel_source.dart';
 import 'package:vibemart/features/admin_panel/domain/model/item_model.dart';
 import 'package:vibemart/features/admin_panel/domain/repository/admin_repo.dart';
 
 class AdminRepoImpl implements AdminRepo {
-  final FirebaseItemsSource _firebaseItemsSource = FirebaseItemsSource();
+  final AdminPanelSource _adminPanelSource = AdminPanelSource();
 
   @override
   Future<List<String>> fetchCategories() async {
     try {
-      return await _firebaseItemsSource.fetchCategories();
+      return await _adminPanelSource.fetchCategories();
     } catch (_) {
       rethrow;
     }
@@ -18,7 +18,7 @@ class AdminRepoImpl implements AdminRepo {
   @override
   Future<String?> pickImage() async {
     try {
-      return await _firebaseItemsSource.pickImage();
+      return await _adminPanelSource.pickImage();
     } catch (_) {
       rethrow;
     }
@@ -27,7 +27,7 @@ class AdminRepoImpl implements AdminRepo {
   @override
   Future<String> uploadImageToImgBB(String imagePath) async {
     try {
-      return await _firebaseItemsSource.uploadImageToImgBB(imagePath);
+      return await _adminPanelSource.uploadImageToImgBB(imagePath);
     } catch (_) {
       rethrow;
     }
@@ -36,7 +36,7 @@ class AdminRepoImpl implements AdminRepo {
   @override
   Future<void> uploadItemToFireStore(ItemModel item) async {
     try {
-      return await _firebaseItemsSource.uploadItemToFireStore(item);
+      return await _adminPanelSource.uploadItemToFireStore(item);
     } catch (_) {
       rethrow;
     }
@@ -45,7 +45,7 @@ class AdminRepoImpl implements AdminRepo {
   @override
   Future<void> logoutAdmin(BuildContext context) async {
     try {
-      await _firebaseItemsSource.logoutAdmin(context);
+      await _adminPanelSource.logoutAdmin(context);
     } catch (_) {
       rethrow;
     }

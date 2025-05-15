@@ -10,7 +10,7 @@ import 'package:vibemart/core/commons/common_data_source/common_data_source.dart
 import 'package:vibemart/features/admin_panel/domain/model/item_model.dart';
 import 'package:vibemart/features/auth/presentation/view/login/login_view.dart';
 
-class FirebaseItemsSource {
+class AdminPanelSource {
   // pick image from gallery
   Future<String?> pickImage() async {
     try {
