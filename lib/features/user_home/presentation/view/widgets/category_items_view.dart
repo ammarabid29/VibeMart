@@ -3,9 +3,9 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:iconsax/iconsax.dart';
 
 import 'package:vibemart/core/colors/colors.dart';
-import 'package:vibemart/features/user_app/user_home/domain/models/category_model.dart';
-import 'package:vibemart/features/user_app/user_home/domain/models/item_model.dart';
-import 'package:vibemart/features/user_app/user_home/presentation/view/widgets/item_card.dart';
+import 'package:vibemart/features/user_home/domain/models/category_model.dart';
+import 'package:vibemart/features/user_home/domain/models/item_model.dart';
+import 'package:vibemart/features/user_home/presentation/view/widgets/item_card.dart';
 
 class CategoryItemsView extends StatefulWidget {
   final List<ItemModel> categoryShopItems;

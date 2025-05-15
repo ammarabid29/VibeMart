@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import 'package:vibemart/features/user_app/user_home/presentation/view/widgets/item_card.dart';
-import 'package:vibemart/features/user_app/user_home/presentation/view_model/user_home_view_model.dart';
+import 'package:vibemart/features/user_home/presentation/view/widgets/item_card.dart';
+import 'package:vibemart/features/user_home/presentation/view_model/user_home_view_model.dart';
 
 class ItemsListWidget extends ConsumerWidget {
   const ItemsListWidget({super.key});

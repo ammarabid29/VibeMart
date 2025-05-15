@@ -1,4 +1,3 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -8,9 +7,7 @@ import 'package:vibemart/core/commons/common_widgets/common_app_bar.dart';
 import 'package:vibemart/features/admin_panel/domain/model/item_model.dart';
 import 'package:vibemart/features/admin_panel/presentation/view/add_item_view/add_item_view.dart';
 import 'package:vibemart/features/admin_panel/presentation/view/widgets/custom_list_tile.dart';
-import 'package:vibemart/features/admin_panel/presentation/view_model/admin_panel_view_model/admin_panel_state.dart';
 import 'package:vibemart/features/admin_panel/presentation/view_model/admin_panel_view_model/admin_panel_view_model.dart';
-import 'package:vibemart/features/auth/presentation/view/login/login_view.dart';
 
 final adminPanelProvider =
     StateNotifierProvider<AdminPanelViewModel, AdminPanelState>(
@@ -53,10 +50,7 @@ class AdminPanelView extends ConsumerWidget {
           IconButton(
             icon: const Icon(Icons.logout),
             onPressed: () async {
-              await FirebaseAuth.instance.signOut();
-              Navigator.of(
-                context,
-              ).pushReplacement(MaterialPageRoute(builder: (_) => LoginView()));
+              await notifier.logoutAdmin(context);
             },
           ),
         ],
@@ -86,6 +80,11 @@ class AdminPanelView extends ConsumerWidget {
         builder: (context, snapshot) {
           if (snapshot.hasError) {
             return Center(child: Text("Error loading items"));
+          }
+          if (!snapshot.hasData) {
+            return Center(
+              child: CircularProgressIndicator(color: kPrimaryColor),
+            );
           }
           final items = snapshot.data ?? [];
           if (items.isEmpty) {

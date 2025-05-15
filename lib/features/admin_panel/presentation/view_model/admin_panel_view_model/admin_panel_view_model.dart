@@ -1,10 +1,28 @@
+import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:vibemart/core/commons/common_widgets/custom_toasts.dart';
 
 import 'package:vibemart/features/admin_panel/domain/model/item_model.dart';
 import 'package:vibemart/features/admin_panel/data/repository/admin_repo_impl.dart';
-import 'package:vibemart/features/admin_panel/presentation/view_model/admin_panel_view_model/admin_panel_state.dart';
+
+class AdminPanelState {
+  final List<String> categories;
+  final String? selectedCategory;
+
+  AdminPanelState({this.categories = const [], this.selectedCategory});
+
+  AdminPanelState copyWith({
+    List<String>? categories,
+    String? selectedCategory,
+  }) {
+    return AdminPanelState(
+      categories: categories ?? this.categories,
+      selectedCategory: selectedCategory ?? this.selectedCategory,
+    );
+  }
+}
 
 class AdminPanelViewModel extends StateNotifier<AdminPanelState> {
   final _repo = AdminRepoImpl();
@@ -36,5 +54,18 @@ class AdminPanelViewModel extends StateNotifier<AdminPanelState> {
     return query.snapshots().map((snapshot) {
       return snapshot.docs.map((doc) => ItemModel.fromMap(doc.data())).toList();
     });
+  }
+
+  Future<void> logoutAdmin(BuildContext context) async {
+    try {
+      await _repo.logoutAdmin(context);
+      showSuccessToast("Logout Successfully");
+    } on FirebaseAuthException catch (e) {
+      // Display Firebase-specific error message in a popup
+      showErrorToast(e.message ?? 'Logout error occurred.');
+    } catch (e) {
+      // Display generic error message in a popup
+      showErrorToast('An unexpected error occurred. Please try again.');
+    }
   }
 }

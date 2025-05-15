@@ -3,9 +3,9 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'package:vibemart/core/colors/colors.dart';
-import 'package:vibemart/features/user_app/user_home/domain/models/category_model.dart';
-import 'package:vibemart/features/user_app/user_home/presentation/view/widgets/category_items_view.dart';
-import 'package:vibemart/features/user_app/user_home/presentation/view_model/user_home_view_model.dart';
+import 'package:vibemart/features/user_home/domain/models/category_model.dart';
+import 'package:vibemart/features/user_home/presentation/view/widgets/category_items_view.dart';
+import 'package:vibemart/features/user_home/presentation/view_model/user_home_view_model.dart';
 
 final categoryStreamProvider = StreamProvider<List<CategoryModel>>((ref) {
   final UserHomeViewModel viewModel = UserHomeViewModel();

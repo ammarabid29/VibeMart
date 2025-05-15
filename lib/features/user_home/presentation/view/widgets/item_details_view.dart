@@ -3,7 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:iconsax/iconsax.dart';
 
 import 'package:vibemart/core/colors/colors.dart';
-import 'package:vibemart/features/user_app/user_home/domain/models/item_model.dart';
+import 'package:vibemart/features/user_home/domain/models/item_model.dart';
 
 class ItemDetailsView extends StatefulWidget {
   final ItemModel itemModel;

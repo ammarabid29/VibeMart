@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:vibemart/features/admin_panel/domain/model/item_model.dart';
 
 abstract class AdminRepo {
@@ -5,4 +6,5 @@ abstract class AdminRepo {
   Future<String> uploadImageToImgBB(String imagePath);
   Future<List<String>> fetchCategories();
   Future<String?> pickImage();
+  Future<void> logoutAdmin(BuildContext context);
 }

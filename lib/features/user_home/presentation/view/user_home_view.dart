@@ -3,10 +3,10 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:iconsax/iconsax.dart';
 
 import 'package:vibemart/core/colors/colors.dart';
-import 'package:vibemart/features/user_app/user_home/presentation/view/widgets/category_list_widget.dart';
 import 'package:vibemart/core/commons/common_widgets/custom_banner.dart';
 import 'package:vibemart/core/commons/common_widgets/custom_heading.dart';
-import 'package:vibemart/features/user_app/user_home/presentation/view/widgets/items_list_widget.dart';
+import 'package:vibemart/features/user_home/presentation/view/widgets/category_list_widget.dart';
+import 'package:vibemart/features/user_home/presentation/view/widgets/items_list_widget.dart';
 
 class UserHomeView extends StatelessWidget {
   const UserHomeView({super.key});
@@ -25,7 +25,7 @@ class UserHomeView extends StatelessWidget {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Image.asset("assets/images/app_logo.png", height: 60),
+                  Image.asset("assets/images/app_logo.png", height: 80),
                   // shopping cart Icon
                   InkWell(
                     onTap: () {

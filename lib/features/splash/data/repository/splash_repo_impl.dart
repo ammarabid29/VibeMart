@@ -5,6 +5,10 @@ class SplashRepoImpl implements SplashRepo {
   final FirebaseSplashService _splashService = FirebaseSplashService();
 
   Future<String?> checkUserRole() async {
-    return await _splashService.checkUserRole();
+    try {
+      return await _splashService.checkUserRole();
+    } catch (_) {
+      rethrow;
+    }
   }
 }

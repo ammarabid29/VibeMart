@@ -166,14 +166,6 @@ class AddItemView extends ConsumerWidget {
                   text: "Add Item",
                   isLoading: state.isLoading,
                   onPressed: () async {
-                    print(state.imagePath);
-                    print(_nameController.text);
-                    print(_priceController.text);
-                    print(state.selectedCategory);
-                    print(state.sizes);
-                    print(state.colors);
-                    print(state.isDiscounted);
-                    print(state.discountPercentage);
                     try {
                       await notifier.uploadAndSaveItem(
                         _nameController.text,

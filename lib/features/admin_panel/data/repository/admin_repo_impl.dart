@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:vibemart/features/admin_panel/data/data_source/firebase_items_source.dart';
 import 'package:vibemart/features/admin_panel/domain/model/item_model.dart';
 import 'package:vibemart/features/admin_panel/domain/repository/admin_repo.dart';
@@ -36,6 +37,15 @@ class AdminRepoImpl implements AdminRepo {
   Future<void> uploadItemToFireStore(ItemModel item) async {
     try {
       return await _firebaseItemsSource.uploadItemToFireStore(item);
+    } catch (_) {
+      rethrow;
+    }
+  }
+
+  @override
+  Future<void> logoutAdmin(BuildContext context) async {
+    try {
+      await _firebaseItemsSource.logoutAdmin(context);
     } catch (_) {
       rethrow;
     }
