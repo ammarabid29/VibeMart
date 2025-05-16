@@ -3,14 +3,17 @@ import 'package:firebase_auth/firebase_auth.dart';
 
 class SplashSource {
   final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
-  final FirebaseFirestore _fireStore = FirebaseFirestore.instance;
 
   Future<String?> checkUserRole() async {
     try {
       final user = _firebaseAuth.currentUser;
       if (user != null) {
         DocumentSnapshot userDoc =
-            await _fireStore.collection("users").doc(user.uid).get();
+            await FirebaseFirestore.instance
+                .collection("users")
+                .doc(user.uid)
+                .get();
+        print(userDoc.data());
         return userDoc['role'] as String;
       }
       return null;

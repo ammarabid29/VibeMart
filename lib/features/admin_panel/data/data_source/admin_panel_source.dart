@@ -6,7 +6,6 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:image_picker/image_picker.dart';
 
-import 'package:vibemart/core/commons/common_data_source/common_data_source.dart';
 import 'package:vibemart/features/admin_panel/domain/model/item_model.dart';
 import 'package:vibemart/features/auth/presentation/view/login/login_view.dart';
 
@@ -28,7 +27,8 @@ class AdminPanelSource {
 
   Future<List<String>> fetchCategories() async {
     try {
-      QuerySnapshot snapshot = await categoriesCollection.get();
+      QuerySnapshot snapshot =
+          await FirebaseFirestore.instance.collection("categories").get();
 
       return snapshot.docs.map((doc) => doc["name"] as String).toList();
     } catch (_) {
@@ -61,7 +61,7 @@ class AdminPanelSource {
 
   Future<void> uploadItemToFireStore(ItemModel item) async {
     try {
-      await itemsCollection.add(item.toMap());
+      await FirebaseFirestore.instance.collection("items").add(item.toMap());
     } catch (_) {
       rethrow;
     }

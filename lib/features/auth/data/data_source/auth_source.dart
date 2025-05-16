@@ -3,7 +3,6 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 
 class AuthSource {
   final FirebaseAuth _auth = FirebaseAuth.instance;
-  final FirebaseFirestore _fireStore = FirebaseFirestore.instance;
 
   Future<void> signupUser({
     required String name,
@@ -19,11 +18,10 @@ class AuthSource {
             password: password.trim(),
           );
       // save additional info
-      await _fireStore.collection("users").doc(userCredentials.user!.uid).set({
-        'name': name.trim(),
-        'email': email.trim(),
-        'role': role,
-      });
+      await FirebaseFirestore.instance
+          .collection("users")
+          .doc(userCredentials.user!.uid)
+          .set({'name': name.trim(), 'email': email.trim(), 'role': role});
     } on FirebaseAuthException catch (_) {
       rethrow;
     } catch (e) {
@@ -42,12 +40,19 @@ class AuthSource {
             email: email.trim(),
             password: password.trim(),
           );
+
+      // force token refresh to ensure firestore access is permitted
+      await userCredentials.user!.getIdToken(true);
+
       // fetch user role
       DocumentSnapshot userDoc =
-          await _fireStore
+          await FirebaseFirestore.instance
               .collection("users")
               .doc(userCredentials.user!.uid)
               .get();
+      if (!userDoc.exists) {
+        throw Exception('User document does not exist');
+      }
       return userDoc['role'] as String;
     } on FirebaseAuthException catch (_) {
       rethrow;

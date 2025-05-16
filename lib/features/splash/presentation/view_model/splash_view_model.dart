@@ -39,7 +39,7 @@ class SplashViewModel {
       showErrorToast(e.message ?? 'Login error occurred.');
     } catch (e) {
       // Display generic error message in a popup
-      showErrorToast('An unexpected error occurred. Please try again.');
+      showErrorToast('Error in splash.');
     }
   }
 }

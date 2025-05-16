@@ -37,7 +37,8 @@ class LoginViewModel {
       showErrorToast(e.message ?? 'Authentication error occurred.');
     } catch (e) {
       // Display generic error message in a popup
-      showErrorToast('An unexpected error occurred. Please try again.');
+      print(e.toString());
+      showErrorToast(e.toString());
     }
   }
 }

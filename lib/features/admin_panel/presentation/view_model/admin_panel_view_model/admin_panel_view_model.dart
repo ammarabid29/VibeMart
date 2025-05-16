@@ -1,7 +1,8 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
+
 import 'package:vibemart/core/commons/common_widgets/custom_toasts.dart';
 
 import 'package:vibemart/features/admin_panel/domain/model/item_model.dart';
@@ -46,8 +47,9 @@ class AdminPanelViewModel extends StateNotifier<AdminPanelState> {
   }
 
   Stream<List<ItemModel>> getItemsStream() {
-    final collection = FirebaseFirestore.instance.collection("items");
-    var query = collection.where("uploadedBy", isEqualTo: uid);
+    var query = FirebaseFirestore.instance
+        .collection("items")
+        .where("uploadedBy", isEqualTo: uid);
     if (state.selectedCategory != null) {
       query = query.where("category", isEqualTo: state.selectedCategory);
     }
